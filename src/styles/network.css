@@ -1,0 +1,9 @@
+
+div#page-network-view>ul>li{
+    display: none;
+}
+
+div#page-network-view.xhr>ul>li.XHR,
+div#page-network-view.ws>ul>li.WS{
+    display: block;
+}

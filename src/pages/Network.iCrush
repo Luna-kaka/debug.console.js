@@ -16,6 +16,8 @@
 </template>
 <script>
 
+    import '../styles/network.css';
+
     export default {
         data() {
             return {
@@ -44,7 +46,7 @@
 </span><span style='display: inline-block;width: 50px;font-size: 14px;padding: 5px;'>
     查看
 </span>`;
-                li.setAttribute('class', type)
+                li.setAttribute('class', type);
                 ul.appendChild(li);
             }
         },

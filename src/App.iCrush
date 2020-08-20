@@ -5,7 +5,7 @@
                 <li @click='changeFlag("elements")' class='elements'>Elements</li>
                 <li @click='changeFlag("console")' class='console'>Console</li>
                 <li @click='changeFlag("network")' class='network'>Network</li>
-                <li @click='changeFlag("help")' class='help'>Help</li>
+                <li @click='changeFlag("application")' class='application'>Application</li>
             </ul>
             <ul class="content-view">
                 <li ui-show:elements='flag'>
@@ -17,8 +17,8 @@
                 <li ui-show:network='flag'>
                     <ui-network></ui-network>
                 </li>
-                <li ui-show:help='flag'>
-                    <ui-help></ui-help>
+                <li ui-show:application='flag'>
+                    <ui-application></ui-application>
                 </li>
             </ul>
         </div>
@@ -30,7 +30,7 @@
     import Elements from './pages/Elements.iCrush';
     import Console from './pages/Console.iCrush';
     import Network from './pages/Network.iCrush';
-    import Help from './pages/Help.iCrush';
+    import Application from './pages/Application.iCrush';
 
     import startUpConsole from './services/Console.js';
     import startUpNetworkXHR from './services/Network@XHR.js';
@@ -65,7 +65,7 @@
             "uiElements": Elements,
             "uiConsole": Console,
             "uiNetwork": Network,
-            "uiHelp": Help
+            "uiApplication": Application
         },
         created() {
             startUpConsole(this);
@@ -92,7 +92,7 @@
     ul.nav[flag='elements']>li.elements,
     ul.nav[flag='console']>li.console,
     ul.nav[flag='network']>li.network,
-    ul.nav[flag='help']>li.help {
+    ul.nav[flag='application']>li.application {
         color: white;
         border-bottom: 2px solid red;
     }

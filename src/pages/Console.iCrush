@@ -40,15 +40,15 @@
                 li.style.color = color;
                 li.setAttribute('class', data.type)
                 li.innerHTML = `
-    <i style='font-size:12px;color:black;font-style:normal;padding-right:10px;width:70px;display:inline-block;'>
-        ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}
-    </i>
-    <i style='font-size:12px;color:white;font-style:normal;padding:5px;display:inline-block;width:50px;text-align:center;background-color:${color};margin-right:10px;'>
-        ${data.type}
-    </i>
-    <div style='padding:10px 0;font-size:14px;line-height:2em;'>
-        ${toString(data.content)}
-    </div>`;
+                    <i style='font-size:12px;color:black;font-style:normal;padding-right:10px;width:70px;display:inline-block;'>
+                        ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}
+                    </i>
+                    <i style='font-size:12px;color:black;font-style:normal;padding:5px;display:inline-block;width:50px;text-align:center;background-color:${color};margin-right:10px;'>
+                        ${data.type}
+                    </i>
+                    <div style='padding:10px 0;font-size:14px;line-height:2em;'>
+                        ${toString(data.content)}
+                    </div>`;
                 ul.appendChild(li);
 
             });

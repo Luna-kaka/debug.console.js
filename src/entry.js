@@ -41,7 +41,7 @@ iframeDocument.open();
 iframeDocument.write("<div id='root'></div>");
 iframeDocument.close();
 
-iCrush.prototype.$document=iframeDocument;
+iCrush.prototype.$document = iframeDocument;
 
 new iCrush({
 

@@ -33,6 +33,7 @@
     import Help from './pages/Help.iCrush';
 
     import startUpConsole from './services/Console.js';
+    import startUpNetworkXHR from './services/Network@XHR.js';
 
     export default {
         data() {
@@ -68,6 +69,7 @@
         },
         created() {
             startUpConsole(this);
+            startUpNetworkXHR(this);
         }
     };
 
@@ -104,8 +106,8 @@
         position: fixed;
         cursor: pointer;
         user-select: none;
-        top: 5px;
-        right: 5px;
+        top: 0;
+        right: 0;
         z-index: 9999;
         background-color: #ff1e8a;
         margin: 0px;

@@ -1,5 +1,165 @@
 <template>
-    <div>
-        (Network)未支持，敬请期待！
+    <div class='view xhr ws' id='page-network-view'>
+        <div>
+            <div class='clean' @click='doClean()'>清空</div>
+            <div class="xhr" ui-togger-class:xhr='page-network-view'>XHR</div>
+            <div class="ws" ui-togger-class:ws='page-network-view'>WS</div>
+        </div>
+        <p>
+            <span>名称</span>
+            <span>状态</span>
+            <span>类型</span>
+            <span>操作</span>
+        </p>
+        <ul id='pages-network-ul'></ul>
     </div>
 </template>
+<script>
+
+    export default {
+        data() {
+            return {
+                networkMsg: {},
+                flag: true
+            };
+        },
+        methods: {
+            doClean() {
+                this.$document.getElementById('pages-network-ul').innerHTML = '';
+                this.networkMsg = {};
+            },
+            appendLi(ul, name, type) {
+
+                this.flag = !this.flag;
+
+                let li = this.$document.createElement('li');
+
+                li.innerHTML = `
+<span style='display: inline-block;width: calc(100% - 150px);font-size: 14px;padding: 5px;'>
+    ${name}
+</span><span style='display: inline-block;width: 50px;font-size: 14px;padding: 5px;'>
+    等待
+</span><span style='display: inline-block;width: 50px;font-size: 14px;padding: 5px;'>
+    ${type}
+</span><span style='display: inline-block;width: 50px;font-size: 14px;padding: 5px;'>
+    查看
+</span>`;
+                li.setAttribute('class', type)
+                ul.appendChild(li);
+            }
+        },
+        mounted() {
+
+            let ul = this.$document.getElementById('pages-network-ul');
+            this.on('network@xhr', data => {
+
+                if (data.method == 'open') {
+                    this.networkMsg[data.id] = data.content;
+
+                    let showUrl = data.content.url;
+
+                    // 然后追加到页面
+                    this.appendLi(ul, showUrl, 'XHR');
+
+                } else if (data.method == 'send') {
+                    this.networkMsg[data.id].params = data.params;
+                } else if (data.methods == "onreadystatechange") {
+                    this.networkMsg[data.id].fullUrl = data.fullUrl;
+                    this.networkMsg[data.id].status = data.status;
+                    this.responseContent = data.response;
+                }
+
+            });
+        }
+    };
+</script>
+<style>
+    /*
+        活跃的样式
+    */
+
+    div.view.xhr>div>div.xhr {
+        background-color: green;
+    }
+
+    div.view.ws>div>div.ws {
+        background-color: blue;
+    }
+
+    div.view.xhr>div>div.xhr,
+    div.view.ws>div>div.ws {
+        color: white;
+    }
+
+    /*
+        不活跃的样式
+    */
+
+    div.view>div>div.xhr {
+        background-color: #99cb99;
+    }
+
+    div.view>div>div.ws {
+        background-color: #c0c0e6;
+    }
+
+
+    div.view {
+        padding-top: 70px;
+    }
+
+    div.view>div {
+        position: fixed;
+        top: 36px;
+        width: 100vw;
+        left: 0;
+        background-color: rgb(215 212 212);
+        padding-top: 10px;
+    }
+
+    div.view>div>div {
+        display: inline-block;
+        margin-bottom: 10px;
+        padding: 0 10px;
+        height: 19px;
+        line-height: 19px;
+        text-align: center;
+        cursor: pointer;
+        color: gray;
+    }
+
+    div.view>div>div:not(.clean) {
+        font-size: 12px;
+    }
+
+    div.view>div>div.clean {
+        background-image: url('../assets/clean.png');
+        font-size: 0;
+        vertical-align: top;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 30px;
+    }
+
+    /**
+        标题样式
+    */
+    div.view>p {
+        color: white;
+        background-color: #ef0303;
+        position: fixed;
+        width: 100vw;
+        top: 75px;
+    }
+
+    div.view>p>span {
+        display: inline-block;
+        width: 50px;
+        font-size: 14px;
+        padding: 5px;
+    }
+
+    div.view>p>span:first-child {
+        width: calc(100% - 150px);
+    }
+</style>

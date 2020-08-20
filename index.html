@@ -10,7 +10,26 @@
 </head>
 
 <body>
+
+  <h2>
+    @yelloxing/debugger - 💯🎈 一个用于移动端的WEB调试工具。
+  </h2>
+  <p>
+    请点击右侧的调试按钮查看捕获结果！
+  </p>
+  <h4>Network测试</h4>
+  <ul>
+    <li onclick='doSend("get","package.json")'>[地址存在]点击发送get请求</li>
+    <li onclick='doSend("get","package2.json")'>[地址不存在]点击发送get请求</li>
+    <li onclick='doSend("post","package.json")'>点击发送post请求</li>
+    <li onclick='doSend("get","https://github.com/yelloxing/image2D")'>[网络的]点击发送get请求</li>
+  </ul>
+
   <script>
+
+    /**
+     * console测试
+    */
 
     console.log({ top: "146px", left: "915px" });
     console.log(true);
@@ -32,7 +51,33 @@
     console.debug('debug');
     console.warn('warn');
     console.error('error');
+    console.trace('trace');
     throw new Error('一个错误');
+
+    /**
+     * network测试 
+    */
+    function doSend(methodName, url) {
+      //创建xhr对象
+      var xhr;
+      // if (window.XMLHttpRequest) {
+      xhr = new XMLHttpRequest();
+      // } else {
+      //   xhr = new ActiveXObject('Microsoft.XMLHTTP');
+      // }
+
+      xhr.onreadystatechange = function () {
+        // console.log("network:", xhr);
+      };
+
+      //发送请求
+      xhr.open(methodName, url, false);
+      xhr.send({
+        "key": "value"
+      });
+
+    }
+
   </script>
 </body>
 

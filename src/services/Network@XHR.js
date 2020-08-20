@@ -21,7 +21,7 @@ export default function (target) {
 
         window.XMLHttpRequest.prototype.open = function () {
 
-            this.__yelloxing__debugger__id__ = arguments[0] + "@" + arguments[1] + ":" + new Date().valueOf() + "[" + (Math.random()) + "]";
+            this.__yelloxing__debugger__id__ = "yelloxing-debugger-network^" + arguments[0] + "@" + arguments[1] + ":" + new Date().valueOf() + "[" + (Math.random()) + "]";
 
             // 响应
             let onreadystatechange = this.onreadystatechange;

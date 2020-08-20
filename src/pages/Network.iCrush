@@ -30,15 +30,15 @@
                 this.$document.getElementById('pages-network-ul').innerHTML = '';
                 this.networkMsg = {};
             },
-            appendLi(ul, name, type) {
+            appendLi(ul, name, type, id) {
 
                 this.flag = !this.flag;
 
                 let li = this.$document.createElement('li');
 
                 li.innerHTML = `
-<span style='display: inline-block;width: calc(100% - 150px);font-size: 14px;padding: 5px;'>
-    ${name}
+<span title='${name}' style='white-space: nowrap;vertical-align: bottom;overflow: hidden;text-overflow: ellipsis;display: inline-block;width: calc(100% - 150px);font-size: 14px;padding: 5px;'>
+    ${name.replace(/\?.*$/, '').replace(/^.*\/\//, '')}
 </span><span style='display: inline-block;width: 50px;font-size: 14px;padding: 5px;'>
     等待
 </span><span style='display: inline-block;width: 50px;font-size: 14px;padding: 5px;'>
@@ -47,6 +47,7 @@
     查看
 </span>`;
                 li.setAttribute('class', type);
+                li.setAttribute('id', id);
                 ul.appendChild(li);
             }
         },
@@ -58,17 +59,23 @@
                 if (data.method == 'open') {
                     this.networkMsg[data.id] = data.content;
 
-                    let showUrl = data.content.url;
-
                     // 然后追加到页面
-                    this.appendLi(ul, showUrl, 'XHR');
+                    this.appendLi(ul, data.content.url, 'XHR', data.id);
 
                 } else if (data.method == 'send') {
                     this.networkMsg[data.id].params = data.params;
-                } else if (data.methods == "onreadystatechange") {
+                } else if (data.method == "onreadystatechange") {
                     this.networkMsg[data.id].fullUrl = data.fullUrl;
                     this.networkMsg[data.id].status = data.status;
                     this.responseContent = data.response;
+
+                    // 修改列表的状态
+                    let liDom = this.$document.getElementById(data.id);
+                    let statusDom = liDom.children[1];
+                    statusDom.innerText = '完成';
+                    statusDom.style.color = 'green';
+                    statusDom.style.fontWeight = '800';
+
                 }
 
             });

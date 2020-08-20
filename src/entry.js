@@ -52,3 +52,7 @@ new iCrush({
     render: createElement => createElement(App)
 
 });
+
+console.info(
+    '\u001B[92m👉  Thank you for using (\u001B[94m https://github.com/yelloxing/debug.console.js \u001B[92m) as the tool of debugger! \u001B[0m\n'
+);

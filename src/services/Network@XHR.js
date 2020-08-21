@@ -24,17 +24,44 @@ export default function (target) {
             this.__yelloxing__debugger__id__ = "yelloxing-debugger-network^" + arguments[0] + "@" + arguments[1] + ":" + new Date().valueOf() + "[" + (Math.random()) + "]";
 
             // 响应
-            let onreadystatechange = this.onreadystatechange;
-            this.onreadystatechange = function () {
-                if (onreadystatechange) { onreadystatechange.apply(this, arguments); }
+            let { ontimeout, onerror, onloadend } = this;
+
+
+            this.onloadend = function () {
+                if (onloadend) { onloadend.apply(this, arguments); }
                 if (this.readyState == 4) {
                     target.trigger('network@xhr', {
-                        method: "onreadystatechange",
-                        content: this,
-                        fullUrl: this.responseURL,
+                        method: "end",
+                        message: {
+                            status: this.status
+                        },
+                        // 表示正常结束
+                        type: 'network-ok',
                         id: this.__yelloxing__debugger__id__
                     });
                 }
+            };
+
+            this.ontimeout = function () {
+                if (ontimeout) { ontimeout.apply(this, arguments); }
+                target.trigger('network@xhr', {
+                    method: "end",
+                    message: {},
+                    // 表示请求超时
+                    type: 'timeout',
+                    id: this.__yelloxing__debugger__id__
+                });
+            };
+
+            this.onerror = function () {
+                if (onerror) { onerror.apply(this, arguments); }
+                target.trigger('network@xhr', {
+                    method: "end",
+                    message: {},
+                    // 表示发生错误
+                    type: 'error',
+                    id: this.__yelloxing__debugger__id__
+                });
             };
 
             // 拦截请求
@@ -51,7 +78,18 @@ export default function (target) {
 
         // 拦截发送
         window.XMLHttpRequest.prototype.send = function () {
-            send.apply(this, arguments);
+            try {
+                send.apply(this, arguments);
+            } catch (e) {
+                target.trigger('network@xhr', {
+                    method: "end",
+                    message: {},
+                    type: "send-error",
+                    id: this.__yelloxing__debugger__id__
+                });
+                throw e;
+            }
+
             target.trigger('network@xhr', {
                 method: "send",
                 params: arguments[0],

@@ -53,9 +53,7 @@
 
                 xhrml(li.children[3]).bind('click', () => {
                     alert('查看详情功能开发中！');
-                    console.log("-------------------------");
-                    console.log(this.networkMsg[id]);
-                    console.log("-------------------------");
+                    console.info('Network', this.networkMsg[id]);
                 });
             }
         },

@@ -1,5 +1,5 @@
 /**
- * 拦截网络请求服务
+ * 拦截网络请求服务(Xml Http Request)
  *
  * @author 心叶(yelloxing)
  *

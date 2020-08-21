@@ -34,6 +34,7 @@
 
     import startUpConsole from './services/Console.js';
     import startUpNetworkXHR from './services/Network@XHR.js';
+    import startUpNetworkWS from './services/Network@WS.js';
 
     export default {
         data() {
@@ -70,6 +71,7 @@
         created() {
             startUpConsole(this);
             startUpNetworkXHR(this);
+            startUpNetworkWS(this);
         }
     };
 

@@ -1,5 +1,14 @@
 <template>
     <div class='view' id='page-elements-view'>
-        (Elements)未支持，敬请期待！
+        即将到来！
     </div>
 </template>
+<style>
+    div {
+        text-align: center;
+        line-height: 50vh;
+        font-size: 40px;
+        font-family: fantasy;
+        color: gray;
+    }
+</style>

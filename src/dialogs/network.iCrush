@@ -1,0 +1,53 @@
+<template>
+  <div class='view' style='display: none;' id='page-network-dialog'>
+    <div class="container" id='page-network-dialog-container'>
+    </div>
+    <div class="btn-list">
+      <input type="button" value="关闭" @click='close()'>
+    </div>
+  </div>
+</template>
+<script>
+  export default {
+    methods: {
+      close() {
+        this.$document.getElementById('page-network-dialog').style.display = 'none';
+      }
+    }
+  };
+</script>
+<style>
+  div.view {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    padding: 30px;
+    background-color: #2627285e;
+  }
+
+  div.view>div.container {
+    overflow: auto;
+    width: 100%;
+    height: calc(100% - 40px);
+    background-color: white;
+  }
+
+  div.view>div.btn-list {
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  div.view>div.btn-list>input[type='button'] {
+    line-height: 36px;
+    width: 80px;
+    border-radius: 8px;
+    font-size: 16px;
+    border: none;
+    background-color: #f44c88;
+    color: white;
+    cursor: pointer;
+    outline: none;
+  }
+</style>

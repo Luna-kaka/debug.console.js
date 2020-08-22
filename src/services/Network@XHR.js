@@ -29,11 +29,16 @@ export default function (target) {
 
             this.onloadend = function () {
                 if (onloadend) { onloadend.apply(this, arguments); }
+
                 if (this.readyState == 4) {
                     target.trigger('network@xhr', {
                         method: "end",
-                        message: {
-                            status: this.status
+                        responseMessage: {
+                            URL: this.responseURL,
+                            status: this.status,
+                            statusText: this.statusText,
+                            response: this.response,
+                            responseText: this.responseText
                         },
                         // 表示正常结束
                         type: 'network-ok',
@@ -46,7 +51,7 @@ export default function (target) {
                 if (ontimeout) { ontimeout.apply(this, arguments); }
                 target.trigger('network@xhr', {
                     method: "end",
-                    message: {},
+                    responseMessage: {},
                     // 表示请求超时
                     type: 'timeout',
                     id: this.__yelloxing__debugger__id__
@@ -57,7 +62,7 @@ export default function (target) {
                 if (onerror) { onerror.apply(this, arguments); }
                 target.trigger('network@xhr', {
                     method: "end",
-                    message: {},
+                    responseMessage: {},
                     // 表示发生错误
                     type: 'error',
                     id: this.__yelloxing__debugger__id__
@@ -83,7 +88,7 @@ export default function (target) {
             } catch (e) {
                 target.trigger('network@xhr', {
                     method: "end",
-                    message: {},
+                    responseMessage: e,
                     type: "send-error",
                     id: this.__yelloxing__debugger__id__
                 });

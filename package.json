@@ -1,6 +1,6 @@
 {
   "name": "@yelloxing/debugger",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "💯🎈 一个用于移动端的WEB调试工具。",
   "main": "build/debug.console.min.js",
   "scripts": {
@@ -46,6 +46,7 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.2",
+    "wscode": "^2.0.1",
     "xhtml.js": "^1.1.2"
   }
 }

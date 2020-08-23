@@ -1,7 +1,7 @@
 <template>
   <div class='view' style='display: none;' id='page-network-dialog'>
-    <div class="container" id='page-network-dialog-container'>
-    </div>
+    <pre class="container" id='page-network-dialog-container'>
+    </pre>
     <div class="btn-list">
       <input type="button" value="关闭" @click='close()'>
     </div>
@@ -27,11 +27,16 @@
     background-color: #2627285e;
   }
 
-  div.view>div.container {
+  div.view>pre.container {
     overflow: auto;
     width: 100%;
     height: calc(100% - 40px);
     background-color: white;
+    margin: 0;
+    line-height: 1.6em;
+    font-size: 14px;
+    padding: 10px;
+    font-family: revert;
   }
 
   div.view>div.btn-list {

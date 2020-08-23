@@ -58,7 +58,7 @@
                 ul.appendChild(li);
 
                 xhrml(li.children[3]).bind('click', () => {
-                    this.$document.getElementById('page-network-dialog-container').innerText = JSON.stringify(this.networkMsg[id]);
+                    this.$document.getElementById('page-network-dialog-container').innerText = JSON.stringify(this.networkMsg[id], undefined, 2);
                     this.$document.getElementById('page-network-dialog').style.display = 'block';
                 });
             }

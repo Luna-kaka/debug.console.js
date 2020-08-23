@@ -8,7 +8,7 @@
 
 ::-webkit-scrollbar-thumb {
     height: .3rem;
-    background-color: rgb(113, 30, 50);
+    background-color: rgb(181 203 213);
     border-radius: .05rem;
 }
 
@@ -16,7 +16,7 @@
 
 * {
     /*三角箭头的颜色*/
-    scrollbar-arrow-color: rgb(113, 30, 50);
+    scrollbar-arrow-color: rgb(181 203 213);
     /*滚动条滑块按钮的颜色*/
     scrollbar-face-color: #eeeeee;
     /*滚动条整体颜色*/

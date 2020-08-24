@@ -37,7 +37,7 @@ export default function (target) {
                             URL: this.responseURL,
                             status: this.status,
                             statusText: this.statusText,
-                            response: this.response,
+                            response: this.response ? JSON.parse(this.response) : this.response,
                             responseText: this.responseText
                         },
                         // 表示正常结束

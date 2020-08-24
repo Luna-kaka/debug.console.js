@@ -3,7 +3,7 @@
     <pre class="container" id='page-network-dialog-container'>
     </pre>
     <div class="btn-list">
-      <input type="button" value="关闭" @click='close()'>
+      <input type="button" value="确定" @click='close()'>
     </div>
   </div>
 </template>
@@ -50,7 +50,7 @@
     border-radius: 8px;
     font-size: 16px;
     border: none;
-    background-color: #f44c88;
+    background-color: #272224;
     color: white;
     cursor: pointer;
     outline: none;

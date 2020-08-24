@@ -1,14 +1,30 @@
 <template>
     <div class='view' id='page-elements-view'>
         即将到来！
+        <span>
+            元<br />素
+        </span>
     </div>
 </template>
 <style>
     div {
         text-align: center;
-        line-height: 50vh;
         font-size: 40px;
         font-family: fantasy;
         color: gray;
+        background-position: center 10px;
+        padding-top: 230px;
+        background-repeat: no-repeat;
+        background-image: url('../assets/latter.png');
+        background-size: auto 200px;
+    }
+
+    div>span {
+        position: absolute;
+        top: 73px;
+        font-size: 16px;
+        background-color: #629ed0;
+        color: white;
+        padding: 6px;
     }
 </style>

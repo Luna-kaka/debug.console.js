@@ -1,5 +1,5 @@
 <p align="center"><a href="https://github.com/yelloxing/debug.console.js" target="_blank" rel="noopener noreferrer">
-<img width="400" src="https://yelloxing.github.io/debug.console.js/debugger.png" alt="@yelloxing/debugger"></a></p>
+<img width="400" src="https://yelloxing.gitee.io/debug.console.js/debugger.png" alt="@yelloxing/debugger"></a></p>
 
 # debugger - 手机Web调试工具
 

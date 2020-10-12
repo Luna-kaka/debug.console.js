@@ -1,18 +1,29 @@
 <template>
   <div class='view' style='display: none;' id='page-network-dialog'>
-    <pre class="container" id='page-network-dialog-container'>
-    </pre>
+    <div class="container" id="page-network-dialog-container"></div>
     <div class="btn-list">
       <input type="button" value="确定" @click='close()'>
     </div>
   </div>
 </template>
 <script>
+  import WSCode from 'wscode';
+  import prettify from 'wscode-prettify';
   export default {
     methods: {
       close() {
         this.$document.getElementById('page-network-dialog').style.display = 'none';
       }
+    },
+    mounted() {
+      let wscode = new WSCode({
+        el: this.$document.getElementById('page-network-dialog-container'),
+        readonly: true,
+        shader: prettify
+      });
+      window.updatePageNetworkDialogContainer = code => {
+        wscode.terminal('ctrl+a').terminal('delete').input(code);
+      };
     }
   };
 </script>
@@ -27,7 +38,7 @@
     background-color: #2627285e;
   }
 
-  div.view>pre.container {
+  div.view>div.container {
     overflow: auto;
     width: 100%;
     height: calc(100% - 40px);

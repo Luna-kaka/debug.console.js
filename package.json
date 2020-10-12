@@ -1,6 +1,6 @@
 {
   "name": "@yelloxing/debugger",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "🎈 一个用于移动端的WEB调试工具。",
   "main": "build/debug.console.min.js",
   "scripts": {
@@ -46,10 +46,11 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "image2d": "^1.8.11",
-    "icrush": "^2.0.1",
     "@yelloxing/normalize.css": "^0.2.1",
-    "xhtml.js": "^1.1.2",
-    "wscode": "^2.0.1"
+    "icrush": "^2.0.1",
+    "image2d": "^1.10.6",
+    "wscode": "^2.1.0",
+    "wscode-prettify": "^0.1.0",
+    "xhtml.js": "^1.1.2"
   }
 }

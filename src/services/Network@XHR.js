@@ -31,13 +31,23 @@ export default function (target) {
                 if (onloadend) { onloadend.apply(this, arguments); }
 
                 if (this.readyState == 4) {
+
+
+                    let response = "";
+
+                    try {
+                        response = JSON.parse(this.response);
+                    } catch (e) {
+                        response = this.response;
+                    }
+
                     target.trigger('network@xhr', {
                         method: "end",
                         responseMessage: {
                             URL: this.responseURL,
                             status: this.status,
                             statusText: this.statusText,
-                            response: this.response ? JSON.parse(this.response) : this.response,
+                            response,
                             responseText: this.responseText
                         },
                         // 表示正常结束

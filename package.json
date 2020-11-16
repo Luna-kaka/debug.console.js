@@ -1,6 +1,6 @@
 {
   "name": "@yelloxing/debugger",
-  "version": "1.0.12",
+  "version": "1.1.0",
   "description": "🎈 一个用于移动端的WEB调试工具。",
   "main": "build/debug.console.min.js",
   "scripts": {

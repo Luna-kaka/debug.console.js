@@ -35,6 +35,7 @@
     import startUpConsole from './services/Console.js';
     import startUpNetworkXHR from './services/Network@XHR.js';
     import startUpNetworkWS from './services/Network@WS.js';
+    import startStorage from './services/storage.js';
 
     export default {
         data() {
@@ -72,6 +73,7 @@
             startUpConsole(this);
             startUpNetworkXHR(this);
             startUpNetworkWS(this);
+            startStorage(this);
         }
     };
 

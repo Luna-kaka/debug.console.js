@@ -28,6 +28,39 @@
   <script>
 
     /**
+     * network测试 
+    */
+    function doSend(methodName, url) {
+      //创建xhr对象
+      var xhr;
+      // if (window.XMLHttpRequest) {
+      xhr = new XMLHttpRequest();
+      // } else {
+      //   xhr = new ActiveXObject('Microsoft.XMLHTTP');
+      // }
+
+      xhr.onreadystatechange = function () {
+        // console.log("network:", xhr);
+      };
+
+      //发送请求
+      xhr.open(methodName, url, false);
+      xhr.send({
+        "key": "value"
+      });
+
+    }
+
+    /**
+     * storage测试
+    */
+
+    for (let i = 0; i < 10; i++) {
+      localStorage.setItem('key' + i, 'value:' + new Date().valueOf());
+      sessionStorage.setItem('key' + i, 'value:' + new Date().valueOf());
+    }
+
+    /**
      * console测试
     */
 
@@ -53,30 +86,6 @@
     console.error('error');
     console.trace('trace');
     throw new Error('一个错误');
-
-    /**
-     * network测试 
-    */
-    function doSend(methodName, url) {
-      //创建xhr对象
-      var xhr;
-      // if (window.XMLHttpRequest) {
-      xhr = new XMLHttpRequest();
-      // } else {
-      //   xhr = new ActiveXObject('Microsoft.XMLHTTP');
-      // }
-
-      xhr.onreadystatechange = function () {
-        // console.log("network:", xhr);
-      };
-
-      //发送请求
-      xhr.open(methodName, url, false);
-      xhr.send({
-        "key": "value"
-      });
-
-    }
 
   </script>
 </body>

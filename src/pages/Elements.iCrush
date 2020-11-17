@@ -3,7 +3,7 @@
         <div class='element' id='page-elements-view_element'>
             <ul></ul>
         </div>
-        <div class="styles"></div>
+        <div class="styles" id='page-elements-view_style'></div>
     </div>
 </template>
 <script>
@@ -13,6 +13,7 @@
 
     export default {
         mounted() {
+            this.showStyle(document.getElementsByTagName('html')[0]);
             this.doit(document.getElementsByTagName('html'), this.$document.getElementById('page-elements-view_element'));
         },
         methods: {
@@ -34,6 +35,18 @@
 
                 // 别的直接忽略了，因为空间不足，无意义的信息不显示
 
+            },
+            showStyle(el) {
+
+                let styles = $$(el).css(), template = "";
+
+                // 拼接样式
+                template += "<ul>"
+                for (let i = 0; i < styles.length; i++) {
+                    template += "<li><i style='color:red'>" + styles[i] + "</i>=<i style='color:green'>" + styles[styles[i]] + "</i></li>";
+                }
+
+                this.$document.getElementById('page-elements-view_style').innerHTML = template + "</ul>";
             },
             doit(targetEls, mountEl) {
 
@@ -66,7 +79,7 @@
 
                 for (let i = 0; i < lis.length; i++) {
                     $$('span', lis[i]).bind('click', event => {
-
+                        this.showStyle(targetEls[i]);
                         this.doit(targetEls[i].childNodes, lis[i]);
                     });
                 };

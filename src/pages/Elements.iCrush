@@ -1,30 +1,88 @@
 <template>
     <div class='view' id='page-elements-view'>
-        即将到来！
-        <span>
-            元<br />素
-        </span>
+        <div class='element' id='page-elements-view_element'>
+            <ul></ul>
+        </div>
+        <div class="styles"></div>
     </div>
 </template>
+<script>
+
+    import '../styles/element.css';
+    import $$ from 'image2d';
+
+    export default {
+        mounted() {
+            this.doit(document.getElementsByTagName('html'), this.$document.getElementById('page-elements-view_element'));
+        },
+        methods: {
+            getTemplate(el) {
+
+                // 文本结点
+                if (el.nodeType == '1') {
+                    let template = "<span style='white-space:nowrap'><i style='color:#183691'>&lt;" + el.nodeName + "</i>";
+                    for (let i = 0; i < el.attributes.length; i++) {
+                        template += " <i style='color:#0086B3'>" + el.attributes[i].nodeName + "='</i><i style='color:#905'>" + el.attributes[i].nodeValue + "</i><i tyle='color:#0086B3'>'</i>";
+                    }
+                    return template += "&gt;</span><ul></ul><span><i style='color:#183691'>&lt/" + el.nodeName + "&gt</i></span>";
+                }
+
+                // 文本结点
+                else if (el.nodeType == '3') {
+                    return "<i style='color:gray'>" + el.textContent + "</i>";
+                }
+
+                // 别的直接忽略了，因为空间不足，无意义的信息不显示
+
+            },
+            doit(targetEls, mountEl) {
+
+                // 判断是否已经打开
+
+                // 如果已经打开，直接关闭即可
+                if (mountEl.getAttribute('isOpen') == 'yes') {
+                    mountEl.setAttribute('isOpen', 'no');
+                    return;
+                }
+
+                // 如果打开过
+                if (mountEl.getAttribute('hadLoad') == 'yes') {
+                    mountEl.setAttribute('isOpen', 'yes');
+                    return;
+                }
+
+                mountEl.setAttribute('isOpen', 'yes');
+                mountEl.setAttribute('hadLoad', 'yes');
+
+                // 不然就是第一次打开，需要解析
+                let template = "";
+                for (let i = 0; i < targetEls.length; i++) {
+                    template += "<li>" + this.getTemplate(targetEls[i]) + "</li>";
+                }
+
+                let ulDom = $$('ul', mountEl);
+                ulDom[0].innerHTML = template;
+                let lis = $$('li', ulDom[0]);
+
+                for (let i = 0; i < lis.length; i++) {
+                    $$('span', lis[i]).bind('click', event => {
+
+                        this.doit(targetEls[i].childNodes, lis[i]);
+                    });
+                };
+
+            }
+        }
+    };
+</script>
 <style>
-    div {
-        text-align: center;
-        font-size: 40px;
-        font-family: fantasy;
-        color: gray;
-        background-position: center 10px;
-        padding-top: 230px;
-        background-repeat: no-repeat;
-        background-image: url('../assets/latter.png');
-        background-size: auto 200px;
+    div.view>div {
+        height: calc(50vh - 20px);
+        overflow: auto;
+        width: 100vw;
     }
 
-    div>span {
-        position: absolute;
-        top: 73px;
-        font-size: 16px;
-        background-color: #629ed0;
-        color: white;
-        padding: 6px;
+    div.view>div.element {
+        background-color: white;
     }
 </style>

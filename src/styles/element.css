@@ -1,0 +1,22 @@
+#page-elements-view>.element li {
+  padding-left: 1em;
+  font-size: 12px;
+}
+
+#page-elements-view>.element i {
+  font-style: normal;
+}
+
+#page-elements-view>.element [isOpen='no']>ul {
+  display: none;
+}
+
+#page-elements-view>.element li {
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-image: url('../assets/right.png');
+}
+
+#page-elements-view>.element li[isOpen='yes'] {
+  background-image: url('../assets/down.png');
+}
